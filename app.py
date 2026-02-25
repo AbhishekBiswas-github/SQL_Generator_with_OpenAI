@@ -1,7 +1,9 @@
 import streamlit as st
 import schema as sch
 import query as qry
+import query_generate as qry_g
 from langchain_openai.chat_models import ChatOpenAI
+
 
 
 st.set_page_config("SQL GENERATOR", layout='wide')
@@ -17,7 +19,8 @@ if 'intent' not in st.session_state:
     st.session_state.intent = False
 
 
-st.session_state.chat_model = ChatOpenAI(model='gpt-4', seed=25, max_completion_tokens=50, temperature=0)
+
+st.session_state.chat_model = ChatOpenAI(model='gpt-4', seed=25, max_completion_tokens=500, temperature=0)
 
 
 if not st.session_state.schema_status and not st.session_state.query_status:
@@ -51,3 +54,4 @@ elif st.session_state.schema_status and not st.session_state.query_status:
 
 elif st.session_state.query_status:
     st.header("Generated_SQL", divider='yellow')
+    qry_g.generate_query()
