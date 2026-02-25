@@ -17,6 +17,8 @@ if "query_status" not in st.session_state:
     st.session_state.query_status = False
 if 'intent' not in st.session_state:
     st.session_state.intent = False
+if 'generate_status' not in st.session_state:
+    st.session_state.generate_status = False
 
 
 
@@ -37,6 +39,7 @@ if not st.session_state.schema_status and not st.session_state.query_status:
                 )
             if st.button("Proceed", type="primary"):
                 st.session_state.schema_status = True
+                st.rerun()
 
 elif st.session_state.schema_status and not st.session_state.query_status:
     st.header("Business Query", divider="red")
@@ -50,6 +53,7 @@ elif st.session_state.schema_status and not st.session_state.query_status:
             st.text_input("Filters", value=st.session_state.intent['filters'], disabled=True)
             if st.button("Generate", type="primary"):
                 st.session_state.query_status = True
+                st.rerun()
             # st.write(st.session_state.intent)
 
 elif st.session_state.query_status:
