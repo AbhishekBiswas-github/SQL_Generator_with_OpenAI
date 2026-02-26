@@ -71,7 +71,7 @@ Generate an optimised SQL query.
         "intent",
         "table_name",
         "column_details",
-        "generate_status"
+        "generate_status",
     ]
 
     if st.button("Reset Everything....", type='secondary'):

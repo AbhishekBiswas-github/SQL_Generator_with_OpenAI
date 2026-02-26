@@ -19,14 +19,10 @@ if 'intent' not in st.session_state:
     st.session_state.intent = False
 if 'generate_status' not in st.session_state:
     st.session_state.generate_status = False
-if 'progress' not in st.session_state:
-    st.session_state.progress = 0
-
 
 
 st.session_state.chat_model = ChatOpenAI(model='gpt-4', seed=25, max_completion_tokens=500, temperature=0)
 
-st.progress(st.session_state.progress, text="SQL Generation progress...")
 
 if not st.session_state.schema_status and not st.session_state.query_status:
     st.header("Database Schema Configuration", divider='blue')
@@ -43,7 +39,6 @@ if not st.session_state.schema_status and not st.session_state.query_status:
                 )
             if st.button("Proceed", type="primary"):
                 st.session_state.schema_status = True
-                st.session_state.progress += 0.5
                 st.rerun()
 
 elif st.session_state.schema_status and not st.session_state.query_status:
@@ -59,7 +54,6 @@ elif st.session_state.schema_status and not st.session_state.query_status:
             st.text_input("Filters Condition", value=st.session_state.intent['filters'], disabled=True)
             if st.button("Generate", type="primary"):
                 st.session_state.query_status = True
-                st.session_state.progress += 0.5
                 st.rerun()
             # st.write(st.session_state.intent)
 

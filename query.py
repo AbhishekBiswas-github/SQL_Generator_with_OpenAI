@@ -4,7 +4,7 @@ import json
 
 
 def get_query():
-    st.session_state.business_query = st.text_input("Business Question Input", value="Tracks with MAX and MIN Playlist Count", placeholder="Enter business query")
+    st.session_state.business_query = st.text_input("Business Question Input", value=None, placeholder="Enter business query")
     if st.button("Show Intent", type='primary'):
         prompt = f"""
         Extract the business intent, metrics and filter from the below user quesion:
